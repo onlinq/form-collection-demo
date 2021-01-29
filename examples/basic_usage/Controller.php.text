@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Controller;
+
+use App\Form\FruitsType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class FruitsController extends AbstractController
+{
+    /**
+     * @Route("/fruits", name="fruits")
+     */
+    public function fruits(): Response
+    {
+        $initialData = [
+            'fruits' => ['Apple', 'Banana', 'Orange'],
+        ];
+
+        $form = $this->createForm(FruitsType::class, $initialData);
+
+        // Handle request here
+
+        return $this->render('fruits/fruits.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+}

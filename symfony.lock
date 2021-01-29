@@ -99,6 +99,9 @@
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
+    "onlinq/form-collection-bundle": {
+        "version": "0.1.0"
+    },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
     },

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form _self %}
+{# or uncomment one of the next lines if you want to use styling provided by the bundle #}
+{#{% form_theme form '@OnlinqFormCollection/collection_theme.html.twig' %}#}
+{#{% form_theme form '@OnlinqFormCollection/bootstrap_collection_theme.html.twig' %}#}
+{#{% form_theme form '@OnlinqFormCollection/bootstrap_inline_collection_theme.html.twig' %}#}
+
+{% block body %}
+  {{ form_start(form) }}
+    {{ form_row(form.fruits) }}
+
+    <button type="submit">Submit</button>
+  {{ form_end(form) }}
+{% endblock %}
+
+{# Unstyled collection form theme blocks #}
+
+{%- block collection_widget -%}
+  {%- set attr = attr|merge({
+    'allow-add': allow_add,
+    'allow-delete': allow_delete,
+    'allow-move': allow_move ?? attr['allow-move'] ?? false,
+    'prefix': form.vars.full_name,
+  }) -%}
+
+  <onlinq-collection {{ block('widget_container_attributes') }}>
+    {%- if prototype is defined and not prototype.rendered -%}
+      <template collection-prototype>
+        {{- form_row(prototype) -}}
+      </template>
+    {%- endif -%}
+
+    {%- set children = form|filter(child => not child.rendered) -%}
+    {%- for child in children -%}
+      <onlinq-collection-entry collection-index="{{ child.vars.name }}">
+        {{- form_row(child) -}}
+      </onlinq-collection-entry>
+    {%- endfor -%}
+
+    {#- Here you can add slots for the onlinq-collection element -#}
+
+    {{- form_rest(form) -}}
+  </onlinq-collection>
+{%- endblock collection_widget -%}
+
+{%- block collection_entry_row -%}
+  {#- This block currently only shows how you can access the "allow_move" option from inside the entry blocks -#}
+  {%- set allow_move = form.parent.vars.allow_move ?? form.parent.vars.attr['allow-move'] ?? false -%}
+
+  {{- block('form_row') -}}
+
+  {#- Here you can add slots for the onlinq-collection-entry element -#}
+{%- endblock collection_entry_row -%}
+
+{%- block collection_entry_label -%}
+  {%- set label_attr = label_attr|merge({'collection-label': true}) -%}
+
+  {{- block('form_label') -}}
+{%- endblock collection_entry_label -%}

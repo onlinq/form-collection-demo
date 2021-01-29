@@ -1,0 +1,16 @@
+.code-example {
+    margin-bottom: 1rem;
+}
+
+.code-example > div > strong {
+    margin-right: .5rem;
+}
+
+.code-block {
+    padding: .8rem 1rem;
+    background: #ededed;
+}
+
+.code-block pre {
+    margin-bottom: 0;
+}

@@ -1,0 +1,51 @@
+{% extends 'layout.html.twig' %}
+
+{% form_theme form with ['bootstrap_4_layout.html.twig', '@OnlinqFormCollection/bootstrap_inline_collection_theme.html.twig'] %}
+
+{% block content %}
+  <div class="pt-4 pb-5">
+    <div class="d-flex justify-content-center align-items-end">
+      <img src="https://www.onlinq.nl/site/assets/static/logo.svg" alt="Onlinq" class="img-fluid" style="height: 80px;">
+      <div class="lead ml-3">presents</div>
+    </div>
+
+    <h1 class="text-center h2 mt-3">Form Collections</h1>
+  </div>
+
+  <div class="border-top py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        {{ form_start(form, {attr: {'data-fruits-form': true}}) }}
+          {{ form_rest(form) }}
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+          <div class="mt-3" style="display: none;" data-fruits-result>
+            <div class="h5">Submitted fruits</div>
+            <ul class="mb-0"></ul>
+          </div>
+        {{ form_end(form) }}
+      </div>
+    </div>
+  </div>
+
+  <div class="border-top py-5">
+    <h2 class="h4">Welcome to the Onlinq Form Collection Demo</h2>
+    <p>
+      <a href="https://github.com/onlinq/form-collection">Onlinq Form Collection web components</a> can be used to
+      create dynamic collections of form inputs, allowing users to add, delete and move entries in HTML forms.
+    </p>
+    <p>
+      This demo was created by using the web components in combination with the
+      <a href="https://github.com/onlinq/form-collection-bundle">Onlinq Form Collection Bundle</a> for
+      <a href="http://symfony.com">Symfony</a>. The source code for this project is
+      <a href="https://github.com/onlinq/form-collection-demo">available on GitHub</a>.
+    </p>
+    <p>
+      See the <a href="https://www.onlinq.dev/docs/form-collection">web components documentation</a> or the
+      <a href="https://www.onlinq.dev/docs/form-collection-bundle">Symfony bundle documentation</a> for
+      instructions on how to install the required components for your project. Once installed, head over to the
+      <a href="{{ path('basic_usage') }}">Basic usage</a> page to get started!
+    </p>
+  </div>
+{% endblock %}

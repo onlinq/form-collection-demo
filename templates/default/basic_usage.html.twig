@@ -1,0 +1,121 @@
+{% extends 'layout.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block content %}
+  <h1 class="h2">Basic usage</h1>
+
+  <p>
+    This is an example of a form collection containing a single text field with the ability to add, delete and move
+    entries in the collection. It uses minimal styling to show that the elements by default don't have spacing.
+  </p>
+
+  <p>
+    The form themes provided by the Form Collection Bundle all come with pre-defined styling. The Twig template shown
+    in the examples below is a good boilerplate for a custom form theme if you want to create your own styling for the
+    form collection. Learn more about working with form themes in <a href="https://symfony.com/doc/current/form/form_themes.html">the Symfony documentation</a>.
+  </p>
+
+  {{ form_start(form, {attr: {'data-fruits-form': true}}) }}
+    <div class="row">
+      <div class="col-md mb-3 mb-md-0">
+        <div class="mb-3">
+          {{ form_rest(form) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      <div class="col-md">
+        <div data-fruits-result>
+          <div class="h5">Submitted fruits</div>
+          <ul class="mb-0">
+            <li><em>None</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  {{ form_end(form) }}
+
+  <ul class="nav nav-tabs flex-row my-3" id="example-tab" role="tablist">
+    <li class="nav-item flex-fill" role="presentation">
+      <a class="nav-link text-center active" id="example-symfony-tab" data-toggle="pill" href="#example-symfony" role="tab" aria-controls="example-symfony" aria-selected="true">Symfony</a>
+    </li>
+    <li class="nav-item flex-fill" role="presentation">
+      <a class="nav-link text-center" id="example-html-tab" data-toggle="pill" href="#example-html" role="tab" aria-controls="example-html" aria-selected="false">HTML</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="example-tabContent">
+    <div class="tab-pane fade show active" id="example-symfony" role="tabpanel" aria-labelledby="example-symfony-tab">
+      <div class="code-example">
+        <div><strong>Controller</strong> <code>src/Controller/FruitsController.php</code></div>
+        <div class="code-block">
+          <pre><code>{{ example('basic_usage/Controller.php') }}</code></pre>
+        </div>
+      </div>
+
+      <div class="code-example">
+        <div><strong>Form Type</strong> <code>src/Form/FruitsType.php</code></div>
+        <div class="code-block">
+          <pre><code>{{ example('basic_usage/FormType.php') }}</code></pre>
+        </div>
+      </div>
+
+      <div class="code-example">
+        <div><strong>Template</strong> <code>templates/fruits/fruits.html.twig</code></div>
+        <div class="code-block">
+          <pre><code>{{ example('basic_usage/template.twig') }}</code></pre>
+        </div>
+      </div>
+
+      <p>
+        Make sure you also included the Form Collection web components in your <code>base.html.twig</code> template with
+      </p>
+
+      <div class="code-example">
+        <div class="code-block">
+          <pre><code>{{ '<script src="{{ asset(\'bundles/onlinqformcollection/onlinq-collection.js\') }}"></script>'|e('html') }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="example-html" role="tabpanel" aria-labelledby="example-html-tab">
+      <div class="code-example">
+        <div class="code-block">
+          <pre><code>{{ example('basic_usage/form.html') }}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{%- block collection_widget -%}
+  {%- set attr = attr|merge({
+    'allow-add': allow_add,
+    'allow-delete': allow_delete,
+    'allow-move': allow_move ?? attr['allow-move'] ?? false,
+    'prefix': form.vars.full_name,
+  }) -%}
+
+  <onlinq-collection {{ block('widget_container_attributes') }}>
+    {%- if prototype is defined and not prototype.rendered -%}
+      <template collection-prototype>
+        {{- form_row(prototype) -}}
+      </template>
+    {%- endif -%}
+
+    {%- set children = form|filter(child => not child.rendered) -%}
+    {%- for child in children -%}
+      <onlinq-collection-entry collection-index="{{ child.vars.name }}">
+        {{- form_row(child) -}}
+      </onlinq-collection-entry>
+    {%- endfor -%}
+
+    {{- form_rest(form) -}}
+  </onlinq-collection>
+{%- endblock collection_widget -%}
+
+{%- block collection_entry_label -%}
+  {%- set label_attr = label_attr|merge({'collection-label': true}) -%}
+
+  {{- block('form_label') -}}
+{%- endblock collection_entry_label -%}

@@ -1,0 +1,23 @@
+<form method="post">
+  <div>
+    <label>Enter your favorite fruits:</label>
+
+    <onlinq-collection prefix="fruits" allow-add allow-delete allow-move>
+      <template collection-prototype>
+        <input type="text" name="fruits[__name__]" required="required"/>
+      </template>
+
+      <onlinq-collection-entry collection-index="0">
+        <input type="text" name="fruits[0]" required="required" value="Apple"/>
+      </onlinq-collection-entry>
+      <onlinq-collection-entry collection-index="1">
+        <input type="text" name="fruits[1]" required="required" value="Banana"/>
+      </onlinq-collection-entry>
+      <onlinq-collection-entry collection-index="2">
+        <input type="text" name="fruits[2]" required="required" value="Orange"/>
+      </onlinq-collection-entry>
+    </onlinq-collection>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
