@@ -7,21 +7,22 @@
 
   <p>
     This is an example of a form collection containing a single text field with the ability to add, delete and move
-    entries in the collection. It uses minimal styling to show that the elements by default don't have spacing.
+    entries in the collection. The example uses the default styling, other examples will showcase how to use CSS
+    custom properties and <code>&lt;slot&gt;</code> elements to customize styling of the collection.
   </p>
 
   <p>
-    The form themes provided by the Form Collection Bundle all come with pre-defined styling. The Twig template shown
-    in the examples below is a good boilerplate for a custom form theme if you want to create your own styling for the
-    form collection. Learn more about working with form themes in <a href="https://symfony.com/doc/current/form/form_themes.html">the Symfony documentation</a>.
+    The Twig template shown in the examples below is a good boilerplate for a custom form theme if you want to create
+    your own styling for the form collection. Learn more about working with form themes in
+    <a href="https://symfony.com/doc/current/form/form_themes.html">the Symfony documentation</a>.
   </p>
 
   {{ form_start(form, {attr: {'data-fruits-form': true}}) }}
     <div class="row">
       <div class="col-md mb-3 mb-md-0">
-        <div class="mb-3">
-          {{ form_rest(form) }}
-        </div>
+        {{ form_row(form.fruits) }}
+
+        {{ form_rest(form) }}
 
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>

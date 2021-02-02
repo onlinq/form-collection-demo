@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% form_theme form with ['bootstrap_4_layout.html.twig', '@OnlinqFormCollection/bootstrap_inline_collection_theme.html.twig'] %}
+{% form_theme form with ['bootstrap_4_layout.html.twig', '@OnlinqFormCollection/bootstrap_collection_theme.html.twig'] %}
 
 {% block content %}
   <div class="pt-4 pb-5">
@@ -16,6 +16,8 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         {{ form_start(form, {attr: {'data-fruits-form': true}}) }}
+          {{ form_row(form.fruits, {attr: {class: 'collection-inline'}}) }}
+
           {{ form_rest(form) }}
 
           <button type="submit" class="btn btn-primary">Submit</button>
