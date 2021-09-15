@@ -1,9 +1,13 @@
 {
     "license": "MIT",
     "devDependencies": {
+        "@onlinq/form-collection": "^0.1.2",
+        "@onlinq/form-collection-bundle": "file:vendor/onlinq/form-collection-bundle/assets",
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
+        "bootstrap": "^4.6.0",
         "core-js": "^3.0.0",
+        "jquery": "^3.6.0",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.41.0",
         "sass-loader": "^12.0.0",

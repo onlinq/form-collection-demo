@@ -27,7 +27,7 @@
         "version": "v4.10.4"
     },
     "onlinq/form-collection-bundle": {
-        "version": "0.1.0"
+        "version": "0.1.2"
     },
     "psr/cache": {
         "version": "1.0.1"

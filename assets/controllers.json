@@ -1,4 +1,15 @@
 {
-    "controllers": [],
+    "controllers": {
+        "@onlinq/form-collection-bundle": {
+            "form_collection": {
+                "enabled": true,
+                "fetch": "eager",
+                "autoimport": {
+                    "@onlinq/form-collection": true,
+                    "@onlinq/form-collection/src/stylesheets/inline.css": true
+                }
+            }
+        }
+    },
     "entrypoints": []
 }
